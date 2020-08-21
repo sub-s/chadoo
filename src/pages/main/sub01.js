@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet, Button, Dimensions} from 'react-native';
 import {isDisabled} from 'react-native/Libraries/LogBox/Data/LogBoxData';
 
 const styles = StyleSheet.create({
@@ -57,9 +57,25 @@ const MainSub = ({navigation}) => {
 
   const [number, setNumber] = useState(0);
   const [fixednum, setFixednum] = useState(0);
-
+  const {width} = Dimensions.get('window');
+  console.log("width:::", width);
   return (
     <View style={styles.body}>
+      <View style={{flexDirection: 'row'}}>
+        {
+          Array.from({length: width / 15}, (_, i) => (
+            <View
+              style={{
+                width: 18,
+                height: 20,
+                backgroundColor: i % 2 === 0 ? '#e75052' : '#cbdcfe',
+                borderBottomLeftRadius: 8,
+                borderBottomEndRadius: 8,
+              }}
+            />
+          ))
+        }
+      </View>
       <Text>{num}</Text>
       <View style={{flexDirection: 'row'}}>
         {
